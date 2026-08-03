@@ -504,70 +504,25 @@
     function showResults() {
         var pool = filterCigarettes();
         var picks = pickRandom(pool);
-        var container = document.getElementById('result-cards');
-        container.innerHTML = '';
+        var cardsHtml = '';
         picks.forEach(function(cig) {
             var imgPath = getImagePath(cig);
             var color = brandColors[cig.brand] || '#5D6D7E';
             var initials = cig.brand.substring(0, 2);
-
-            // 卡片容器
-            var card = document.createElement('div');
-            card.className = 'result-card';
-
-            // 图片
-            var img = document.createElement('img');
-            img.className = 'result-card-img';
-            img.src = imgPath;
-            img.alt = cig.name;
-            img.setAttribute('loading', 'lazy');
-
-            // 占位 div（图片加载失败时显示）
-            var placeholder = document.createElement('div');
-            placeholder.className = 'result-card-placeholder';
-            placeholder.style.display = 'none';
-            placeholder.style.alignItems = 'center';
-            placeholder.style.justifyContent = 'center';
-            placeholder.style.backgroundColor = color;
-            placeholder.style.borderRadius = '10px';
-            placeholder.style.flexShrink = '0';
-            placeholder.style.width = '64px';
-            placeholder.style.height = '86px';
-            var phSpan = document.createElement('span');
-            phSpan.style.color = 'white';
-            phSpan.style.fontSize = '16px';
-            phSpan.style.fontWeight = 'bold';
-            phSpan.textContent = initials;
-            placeholder.appendChild(phSpan);
-
-            // 图片加载失败 → 显示占位
-            (function(im, ph) {
-                im.onerror = function() {
-                    im.style.display = 'none';
-                    ph.style.display = 'flex';
-                };
-            })(img, placeholder);
-
-            // 信息区
-            var info = document.createElement('div');
-            info.className = 'result-card-info';
-
-            var nameDiv = document.createElement('div');
-            nameDiv.className = 'result-card-name';
-            nameDiv.textContent = cig.name;
-
-            var brandDiv = document.createElement('div');
-            brandDiv.className = 'result-card-brand';
-            brandDiv.textContent = cig.brand + ' | ' + cig.price + ' | ' + cig.thickness;
-
-            info.appendChild(nameDiv);
-            info.appendChild(brandDiv);
-
-            card.appendChild(img);
-            card.appendChild(placeholder);
-            card.appendChild(info);
-            container.appendChild(card);
+            cardsHtml +=
+                '<div class="result-card">' +
+                    '<img class="result-card-img" src="' + imgPath + '" alt="' + cig.name + '"' +
+                    ' onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';" />' +
+                    '<div class="result-card-placeholder" style="display:none;align-items:center;justify-content:center;background-color:' + color + ';border-radius:10px;flex-shrink:0;width:64px;height:86px;">' +
+                        '<span style="color:white;font-size:16px;font-weight:bold;">' + initials + '</span>' +
+                    '</div>' +
+                    '<div class="result-card-info">' +
+                        '<div class="result-card-name">' + cig.name + '</div>' +
+                        '<div class="result-card-brand">' + cig.brand + ' | ' + cig.price + ' | ' + cig.thickness + '</div>' +
+                    '</div>' +
+                '</div>';
         });
+        document.getElementById('result-cards').innerHTML = cardsHtml;
     }
 
     function renderQuestion() {

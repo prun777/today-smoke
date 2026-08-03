@@ -25,11 +25,6 @@
             background-color: #FAF7F2;
             color: #333333;
             -webkit-tap-highlight-color: transparent;
-            transition: background-color 0.35s ease;
-        }
-        /* 首页时 body 变绿 */
-        body.on-home {
-            background-color: #5B8C5A;
         }
 
         /* ===== 主容器 ===== */
@@ -55,16 +50,26 @@
            ======================================== */
         #page-home {
             text-align: center;
-            padding-top: 18vh;
+            /* 绿色填满整个视口，抵消容器 padding */
+            background: #5B8C5A;
+            margin: -24px -20px;
+            padding: 18vh 20px 60px;
+            min-height: 100vh;
+        }
+
+        /* 封面图容器 — 和首页背景同色，让图片融入 */
+        .mascot-wrap {
+            display: inline-block;
+            background: #5B8C5A;
+            margin: 0 auto 28px;
         }
 
         .cigarette-mascot {
             display: block;
-            margin: 0 auto 28px;
             max-width: 160px;
             height: auto;
-            /* 绿色背景上微微发光 */
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+            /* 混合模式：白色变透明，融入绿色背景 */
+            mix-blend-mode: multiply;
         }
 
         .home-title {
@@ -327,8 +332,8 @@
             color: #999999;
         }
         /* 首页绿色背景下推广文字变亮 */
-        body.on-home .wechat-promo-name,
-        body.on-home .wechat-promo-text {
+        .wechat-promo.on-green .wechat-promo-name,
+        .wechat-promo.on-green .wechat-promo-text {
             color: rgba(255,255,255,0.7);
         }
 
@@ -361,7 +366,7 @@
 
     <!-- ===== 首页 ===== -->
     <div id="page-home" class="page active">
-        <img class="cigarette-mascot" src="封面图片.jpg" alt="今天抽什么烟">
+        <div class="mascot-wrap"><img class="cigarette-mascot" src="封面图片.jpg" alt="今天抽什么烟"></div>
 
         <h1 class="home-title">今天抽什么烟</h1>
         <p class="home-subtitle">今天适合来一根什么？</p>
@@ -521,13 +526,9 @@
         [pageHome, pageQuiz, pageResult].forEach(function(p) { p.classList.remove('active'); });
         page.classList.add('active');
         wechatPromo.style.display = (page === pageHome) ? 'flex' : 'none';
+        if (page === pageHome) wechatPromo.classList.add('on-green');
+        else wechatPromo.classList.remove('on-green');
         tipLink.style.display = (page === pageResult) ? 'block' : 'none';
-        // 首页绿背景
-        if (page === pageHome) {
-            document.body.classList.add('on-home');
-        } else {
-            document.body.classList.remove('on-home');
-        }
     }
 
     function filterCigarettes() {

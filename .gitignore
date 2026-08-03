@@ -10,10 +10,6 @@ Thumbs.db
 *.tmp
 *.log
 
-# 用户图片（自己本地保留）
-images/*.jpg
-images/*.png
-
 # Python 缓存
 __pycache__/
 *.pyc

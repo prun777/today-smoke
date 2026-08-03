@@ -332,94 +332,97 @@
     // ===== 烟的数据 =====
     var cigarettes = [
         // ── 中华 ──
-        { name: '中华（软）', brand: '中华', price: '50元以上', origin: '国产', thickness: '常规', mood: ['和朋友在一起'], taste: ['抽点够劲的'], image: '', desc: '国烟经典' },
-        { name: '中华（硬）', brand: '中华', price: '50元以上', origin: '国产', thickness: '常规', mood: ['和朋友在一起'], taste: ['抽点够劲的'], image: '', desc: '硬盒中华，醇厚饱满' },
-        { name: '中华（双中支）', brand: '中华', price: '50元以上', origin: '国产', thickness: '中支', mood: ['想放松一下', '和朋友在一起'], taste: ['抽点柔和的'], image: '', desc: '中支新贵，口感细腻' },
-        { name: '中华（细支）', brand: '中华', price: '50元以上', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '细支中华，优雅清淡' },
+        { name: '中华（软）', brand: '中华', price: '50元以上', origin: '国产', thickness: '常规', mood: ['和朋友在一起'], taste: ['抽点够劲的'], image: 'images/中华（软）.jpg', desc: '国烟经典' },
+        { name: '中华（硬）', brand: '中华', price: '50元以上', origin: '国产', thickness: '常规', mood: ['和朋友在一起'], taste: ['抽点够劲的'], image: 'images/中华（硬）.jpg', desc: '硬盒中华，醇厚饱满' },
+        { name: '中华（双中支）', brand: '中华', price: '50元以上', origin: '国产', thickness: '中支', mood: ['想放松一下', '和朋友在一起'], taste: ['抽点柔和的'], image: 'images/中华（双中支）.jpg', desc: '中支新贵，口感细腻' },
+        { name: '中华（细支）', brand: '中华', price: '50元以上', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: 'images/中华（细支）.jpg', desc: '细支中华，优雅清淡' },
         // ── 玉溪 ──
-        { name: '玉溪（软）', brand: '玉溪', price: '20-50元', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的'], image: '', desc: '云系清香' },
-        { name: '玉溪（硬）', brand: '玉溪', price: '20-50元', origin: '国产', thickness: '常规', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '经典硬盒' },
-        { name: '玉溪（细支）', brand: '玉溪', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: '', desc: '细支清香' },
+        { name: '玉溪（软）', brand: '玉溪', price: '20-50元', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的'], image: 'images/玉溪（软）.jpg', desc: '云系清香' },
+        { name: '玉溪（硬）', brand: '玉溪', price: '20-50元', origin: '国产', thickness: '常规', mood: ['想放松一下'], taste: ['抽点柔和的'], image: 'images/玉溪（硬）.jpg', desc: '经典硬盒' },
+        { name: '玉溪（细支）', brand: '玉溪', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: 'images/玉溪（细支）.jpg', desc: '细支清香' },
         // ── 黄鹤楼 ──
-        { name: '黄鹤楼（软蓝）', brand: '黄鹤楼', price: '20-50元', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的'], image: '', desc: '淡雅香型' },
-        { name: '黄鹤楼（硬红）', brand: '黄鹤楼', price: '20-50元', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '劲道适中' },
-        { name: '黄鹤楼（细支）', brand: '黄鹤楼', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '细支雅香' },
-        { name: '黄鹤楼1916', brand: '黄鹤楼', price: '50元以上', origin: '国产', thickness: '常规', mood: ['和朋友在一起'], taste: ['抽点够劲的'], image: '', desc: '高端典范' },
+        { name: '黄鹤楼（软蓝）', brand: '黄鹤楼', price: '20-50元', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的'], image: 'images/黄鹤楼（软蓝）.jpg', desc: '淡雅香型' },
+        { name: '黄鹤楼（硬红）', brand: '黄鹤楼', price: '20-50元', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: 'images/黄鹤楼（硬红）.jpg', desc: '劲道适中' },
+        { name: '黄鹤楼（细支）', brand: '黄鹤楼', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: 'images/黄鹤楼（细支）.jpg', desc: '细支雅香' },
+        { name: '黄鹤楼1916', brand: '黄鹤楼', price: '50元以上', origin: '国产', thickness: '常规', mood: ['和朋友在一起'], taste: ['抽点够劲的'], image: 'images/黄鹤楼1916.jpg', desc: '高端典范' },
         // ── 利群 ──
-        { name: '利群（新版）', brand: '利群', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '国民口粮' },
+        { name: '利群（新版）', brand: '利群', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: 'images/利群（新版）.jpg', desc: '国民口粮' },
         { name: '利群（软红）', brand: '利群', price: '20-50元', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的'], image: '', desc: '长嘴利群' },
-        { name: '利群（细支）', brand: '利群', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '细支利群' },
-        { name: '利群（阳光）', brand: '利群', price: '50元以上', origin: '国产', thickness: '常规', mood: ['想放松一下', '和朋友在一起'], taste: ['抽点柔和的'], image: '', desc: '阳光利群' },
+        { name: '利群（细支）', brand: '利群', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: 'images/利群（细支）.jpg', desc: '细支利群' },
+        { name: '利群（阳光）', brand: '利群', price: '50元以上', origin: '国产', thickness: '常规', mood: ['想放松一下', '和朋友在一起'], taste: ['抽点柔和的'], image: 'images/利群（阳光）.png', desc: '阳光利群' },
         // ── 芙蓉王 ──
-        { name: '芙蓉王（硬）', brand: '芙蓉王', price: '20-50元', origin: '国产', thickness: '常规', mood: ['一个人呆着', '和朋友在一起'], taste: ['抽点够劲的'], image: '', desc: '湖南名烟' },
-        { name: '芙蓉王（软蓝）', brand: '芙蓉王', price: '50元以上', origin: '国产', thickness: '常规', mood: ['想放松一下', '和朋友在一起'], taste: ['抽点柔和的'], image: '', desc: '软蓝芙蓉王' },
-        { name: '芙蓉王（细支）', brand: '芙蓉王', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '细支芙蓉王' },
+        { name: '芙蓉王（硬）', brand: '芙蓉王', price: '20-50元', origin: '国产', thickness: '常规', mood: ['一个人呆着', '和朋友在一起'], taste: ['抽点够劲的'], image: 'images/芙蓉王（硬）.png', desc: '湖南名烟' },
+        { name: '芙蓉王（软蓝）', brand: '芙蓉王', price: '50元以上', origin: '国产', thickness: '常规', mood: ['想放松一下', '和朋友在一起'], taste: ['抽点柔和的'], image: 'images/芙蓉王（软蓝）.png', desc: '软蓝芙蓉王' },
+        { name: '芙蓉王（细支）', brand: '芙蓉王', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: 'images/芙蓉王（细支）.png', desc: '细支芙蓉王' },
         // ── 云烟 ──
-        { name: '云烟（软珍品）', brand: '云烟', price: '20-50元', origin: '国产', thickness: '常规', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '云南珍品' },
-        { name: '云烟（紫）', brand: '云烟', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '紫云烟' },
-        { name: '云烟（细支）', brand: '云烟', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点甜的'], image: '', desc: '细支云烟' },
+        { name: '云烟（紫）', brand: '云烟', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: 'images/云烟（紫）.png', desc: '紫云烟' },
+        { name: '云烟（细支）', brand: '云烟', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点甜的'], image: 'images/云烟（细支）.png', desc: '细支云烟' },
         // ── 南京 ──
-        { name: '南京（炫赫门）', brand: '南京', price: '20元以下', origin: '国产', thickness: '细支', mood: ['想放松一下', '一个人呆着'], taste: ['抽点甜的'], image: '', desc: '甜嘴细支' },
-        { name: '南京（金陵十二钗）', brand: '南京', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点甜的'], image: '', desc: '金陵十二钗' },
+        { name: '南京（炫赫门）', brand: '南京', price: '20元以下', origin: '国产', thickness: '细支', mood: ['想放松一下', '一个人呆着'], taste: ['抽点甜的'], image: 'images/南京（炫赫门）.png', desc: '甜嘴细支' },
+        { name: '南京（金陵十二钗）', brand: '南京', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点甜的'], image: 'images/南京（金陵十二钗）.png', desc: '金陵十二钗' },
         { name: '南京（九五）', brand: '南京', price: '50元以上', origin: '国产', thickness: '常规', mood: ['和朋友在一起'], taste: ['抽点够劲的'], image: '', desc: '九五之尊' },
         // ── 苏烟 ──
-        { name: '苏烟（软金砂）', brand: '苏烟', price: '50元以上', origin: '国产', thickness: '常规', mood: ['想放松一下', '和朋友在一起'], taste: ['抽点柔和的'], image: '', desc: '江苏名烟' },
-        { name: '苏烟（五星红杉树）', brand: '苏烟', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点柔和的'], image: '', desc: '红杉树' },
+        { name: '苏烟（软金砂）', brand: '苏烟', price: '50元以上', origin: '国产', thickness: '常规', mood: ['想放松一下', '和朋友在一起'], taste: ['抽点柔和的'], image: 'images/苏烟（软金砂）.png', desc: '江苏名烟' },
+        { name: '苏烟（五星红杉树）', brand: '苏烟', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点柔和的'], image: 'images/苏烟（五星红杉树）.png', desc: '红杉树' },
         // ── 红塔山 ──
-        { name: '红塔山（经典1956）', brand: '红塔山', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '国民经典' },
-        { name: '红塔山（细支）', brand: '红塔山', price: '20元以下', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '细支红塔山' },
+        { name: '红塔山（经典1956）', brand: '红塔山', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: 'images/红塔山（经典1956）.png', desc: '国民经典' },
+        { name: '红塔山（细支）', brand: '红塔山', price: '20元以下', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: 'images/红塔山（细支）.png', desc: '细支红塔山' },
         // ── 泰山 ──
-        { name: '泰山（望岳）', brand: '泰山', price: '20元以下', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的'], image: '', desc: '望岳泰山' },
+        { name: '泰山（望岳）', brand: '泰山', price: '20元以下', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的'], image: 'images/泰山（望岳）.png', desc: '望岳泰山' },
         { name: '泰山（细支）', brand: '泰山', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点甜的'], image: '', desc: '细支泰山' },
         // ── 贵烟 ──
-        { name: '贵烟（跨越）', brand: '贵烟', price: '20元以下', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点甜的'], image: '', desc: '陈皮爆珠' },
+        { name: '贵烟（跨越）', brand: '贵烟', price: '20元以下', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点甜的'], image: 'images/贵烟（跨越）.png', desc: '陈皮爆珠' },
         { name: '贵烟（硬黄）', brand: '贵烟', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '贵州经典' },
         // ── 娇子 ──
         { name: '娇子（X星座）', brand: '娇子', price: '20元以下', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点甜的'], image: '', desc: '年轻时尚' },
-        { name: '娇子（宽窄）', brand: '娇子', price: '50元以上', origin: '国产', thickness: '常规', mood: ['想放松一下', '和朋友在一起'], taste: ['抽点柔和的'], image: '', desc: '宽窄哲学' },
+        { name: '娇子（宽窄）', brand: '娇子', price: '50元以上', origin: '国产', thickness: '常规', mood: ['想放松一下', '和朋友在一起'], taste: ['抽点柔和的'], image: 'images/娇子（宽窄）.png', desc: '宽窄哲学' },
         // ── 黄山 ──
         { name: '黄山（红方印）', brand: '黄山', price: '20-50元', origin: '国产', thickness: '常规', mood: ['一个人呆着', '和朋友在一起'], taste: ['抽点够劲的'], image: '', desc: '徽烟焦甜香' },
-        { name: '黄山（记忆）', brand: '黄山', price: '20元以下', origin: '国产', thickness: '常规', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '黄山记忆' },
+        { name: '黄山（记忆）', brand: '黄山', price: '20元以下', origin: '国产', thickness: '常规', mood: ['想放松一下'], taste: ['抽点柔和的'], image: 'images/黄山（记忆）.png', desc: '黄山记忆' },
         // ── 七匹狼 ──
-        { name: '七匹狼（白）', brand: '七匹狼', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: '', desc: '白狼低焦' },
-        { name: '七匹狼（细支）', brand: '七匹狼', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '细支狼烟' },
+        { name: '七匹狼（白）', brand: '七匹狼', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: 'images/七匹狼（白）.png', desc: '白狼低焦' },
+        { name: '七匹狼（细支）', brand: '七匹狼', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: 'images/七匹狼（细支）.png', desc: '细支狼烟' },
+        { name: '七匹狼（红）', brand: '七匹狼', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '经典红狼，劲道十足' },
+        { name: '七匹狼（蓝）', brand: '七匹狼', price: '20元以下', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的'], image: '', desc: '蓝狼醇和' },
+        { name: '七匹狼（纯境）', brand: '七匹狼', price: '20-50元', origin: '国产', thickness: '中支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点甜的'], image: '', desc: '纯境中支，甜润口感' },
+        { name: '七匹狼（通运）', brand: '七匹狼', price: '20-50元', origin: '国产', thickness: '常规', mood: ['想放松一下', '和朋友在一起'], taste: ['抽点够劲的'], image: '', desc: '通运狼烟，醇香饱满' },
         // ── 双喜 ──
-        { name: '双喜（经典）', brand: '双喜', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着', '和朋友在一起'], taste: ['抽点够劲的'], image: '', desc: '广式经典' },
-        { name: '双喜（细支）', brand: '双喜', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '细支双喜' },
+        { name: '双喜（经典）', brand: '双喜', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着', '和朋友在一起'], taste: ['抽点够劲的'], image: 'images/双喜（经典）.png', desc: '广式经典' },
+        { name: '双喜（细支）', brand: '双喜', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: 'images/双喜（细支）.png', desc: '细支双喜' },
         // ── 黄金叶 ──
-        { name: '黄金叶（大金圆）', brand: '黄金叶', price: '20-50元', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '中原浓香' },
-        { name: '黄金叶（细支）', brand: '黄金叶', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '细支金叶' },
+        { name: '黄金叶（大金圆）', brand: '黄金叶', price: '20-50元', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: 'images/黄金叶（大金圆）.png', desc: '中原浓香' },
+        { name: '黄金叶（细支）', brand: '黄金叶', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: 'images/黄金叶（细支）.png', desc: '细支金叶' },
         // ── 长白山 ──
-        { name: '长白山（软红）', brand: '长白山', price: '20元以下', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: '', desc: '东北名烟' },
-        { name: '长白山（细支）', brand: '长白山', price: '20元以下', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: '', desc: '极低焦油' },
+        { name: '长白山（软红）', brand: '长白山', price: '20元以下', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: 'images/长白山（软红）.png', desc: '东北名烟' },
+        { name: '长白山（细支）', brand: '长白山', price: '20元以下', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: 'images/长白山（细支）.png', desc: '极低焦油' },
         // ── 中南海 ──
-        { name: '中南海（8mg）', brand: '中南海', price: '20元以下', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: '', desc: '北京老牌' },
-        { name: '中南海（5mg）', brand: '中南海', price: '20元以下', origin: '国产', thickness: '常规', mood: ['想放松一下'], taste: ['抽点口水烟（少尼古丁）'], image: '', desc: '超低焦油' },
+        { name: '中南海（8mg）', brand: '中南海', price: '20元以下', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: 'images/中南海（8mg）.png', desc: '北京老牌' },
+        { name: '中南海（5mg）', brand: '中南海', price: '20元以下', origin: '国产', thickness: '常规', mood: ['想放松一下'], taste: ['抽点口水烟（少尼古丁）'], image: 'images/中南海（5mg）.png', desc: '超低焦油' },
         // ── 黄果树 ──
-        { name: '黄果树（硬）', brand: '黄果树', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '贵州经典' },
+        { name: '黄果树（硬）', brand: '黄果树', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: 'images/黄果树（硬）.png', desc: '贵州经典' },
         // ── 红河 ──
-        { name: '红河（硬甲）', brand: '红河', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '云系口粮' },
+        { name: '红河（硬甲）', brand: '红河', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: 'images/红河（硬甲）.png', desc: '云系口粮' },
         // ── 兰州 ──
-        { name: '兰州（硬珍品）', brand: '兰州', price: '20元以下', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的'], image: '', desc: '西北绵香' },
-        { name: '兰州（细支）', brand: '兰州', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点甜的'], image: '', desc: '绵甜回甘' },
+        { name: '兰州（硬珍品）', brand: '兰州', price: '20元以下', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的'], image: 'images/兰州（硬珍品）.png', desc: '西北绵香' },
+        { name: '兰州（细支）', brand: '兰州', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点甜的'], image: 'images/兰州（细支）.png', desc: '绵甜回甘' },
         // ── 白沙 ──
-        { name: '白沙（精品）', brand: '白沙', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '湖南经典' },
-        { name: '白沙（和天下）', brand: '白沙', price: '50元以上', origin: '国产', thickness: '常规', mood: ['和朋友在一起'], taste: ['抽点够劲的'], image: '', desc: '和天下' },
+        { name: '白沙（精品）', brand: '白沙', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: 'images/白沙（精品）.png', desc: '湖南经典' },
+        { name: '白沙（和天下）', brand: '白沙', price: '50元以上', origin: '国产', thickness: '常规', mood: ['和朋友在一起'], taste: ['抽点够劲的'], image: 'images/白沙（和天下）.png', desc: '和天下' },
         // ── 万宝路（进口）──
-        { name: '万宝路（红）', brand: '万宝路', price: '20-50元', origin: '进口', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '美式经典' },
-        { name: '万宝路（白）', brand: '万宝路', price: '20-50元', origin: '进口', thickness: '常规', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: '', desc: '白金万' },
-        { name: '万宝路（爆珠）', brand: '万宝路', price: '20-50元', origin: '进口', thickness: '常规', mood: ['想放松一下'], taste: ['抽点甜的'], image: '', desc: '薄荷爆珠' },
+        { name: '万宝路（红）', brand: '万宝路', price: '20-50元', origin: '进口', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: 'images/万宝路（红）.png', desc: '美式经典' },
+        { name: '万宝路（白）', brand: '万宝路', price: '20-50元', origin: '进口', thickness: '常规', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: 'images/万宝路（白）.png', desc: '白金万' },
+        { name: '万宝路（爆珠）', brand: '万宝路', price: '20-50元', origin: '进口', thickness: '常规', mood: ['想放松一下'], taste: ['抽点甜的'], image: 'images/万宝路（爆珠）.png', desc: '薄荷爆珠' },
         // ── 555（进口）──
-        { name: '555（金）', brand: '555', price: '20-50元', origin: '进口', thickness: '常规', mood: ['一个人呆着', '和朋友在一起'], taste: ['抽点够劲的'], image: '', desc: '英式烤烟' },
-        { name: '555（蓝）', brand: '555', price: '20-50元', origin: '进口', thickness: '常规', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: '', desc: '淡雅英伦' },
+        { name: '555（金）', brand: '555', price: '20-50元', origin: '进口', thickness: '常规', mood: ['一个人呆着', '和朋友在一起'], taste: ['抽点够劲的'], image: 'images/555（金）.png', desc: '英式烤烟' },
+        { name: '555（蓝）', brand: '555', price: '20-50元', origin: '进口', thickness: '常规', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: 'images/555（蓝）.png', desc: '淡雅英伦' },
         // ── 七星（进口）──
-        { name: '七星（原味）', brand: '七星', price: '20-50元', origin: '进口', thickness: '常规', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '日系经典' },
-        { name: '七星（爆珠）', brand: '七星', price: '20-50元', origin: '进口', thickness: '常规', mood: ['想放松一下'], taste: ['抽点甜的'], image: '', desc: '日系爆珠' },
+        { name: '七星（原味）', brand: '七星', price: '20-50元', origin: '进口', thickness: '常规', mood: ['想放松一下'], taste: ['抽点柔和的'], image: 'images/七星（原味）.png', desc: '日系经典' },
+        { name: '七星（爆珠）', brand: '七星', price: '20-50元', origin: '进口', thickness: '常规', mood: ['想放松一下'], taste: ['抽点甜的'], image: 'images/七星（爆珠）.png', desc: '日系爆珠' },
         // ── 大卫杜夫（进口）──
-        { name: '大卫杜夫（金）', brand: '大卫杜夫', price: '50元以上', origin: '进口', thickness: '常规', mood: ['想放松一下', '和朋友在一起'], taste: ['抽点柔和的'], image: '', desc: '德系高端' },
+        { name: '大卫杜夫（金）', brand: '大卫杜夫', price: '50元以上', origin: '进口', thickness: '常规', mood: ['想放松一下', '和朋友在一起'], taste: ['抽点柔和的'], image: 'images/大卫杜夫（金）.png', desc: '德系高端' },
         // ── 爱喜（进口）──
-        { name: '爱喜（经典）', brand: '爱喜', price: '20元以下', origin: '进口', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: '', desc: '韩系细支' },
-        { name: '爱喜（爆珠）', brand: '爱喜', price: '20元以下', origin: '进口', thickness: '细支', mood: ['想放松一下'], taste: ['抽点甜的'], image: '', desc: '韩系爆珠' },
+        { name: '爱喜（经典）', brand: '爱喜', price: '20元以下', origin: '进口', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: 'images/爱喜（经典）.png', desc: '韩系细支' },
+        { name: '爱喜（爆珠）', brand: '爱喜', price: '20元以下', origin: '进口', thickness: '细支', mood: ['想放松一下'], taste: ['抽点甜的'], image: 'images/爱喜（爆珠）.png', desc: '韩系爆珠' },
         // ── 宝亨（进口）──
         { name: '宝亨（原味）', brand: '宝亨', price: '20-50元', origin: '进口', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的'], image: '', desc: '韩系混合' }
     ];
@@ -486,7 +489,7 @@
 
     function getImagePath(cig) {
         if (cig.image) return cig.image;
-        return 'images/' + encodeURIComponent(cig.name) + '.jpg';
+        return 'images/' + cig.name + '.jpg';
     }
 
     var brandColors = {
@@ -501,25 +504,68 @@
     function showResults() {
         var pool = filterCigarettes();
         var picks = pickRandom(pool);
-        var cardsHtml = '';
+        var container = document.getElementById('result-cards');
+        container.innerHTML = '';
         picks.forEach(function(cig) {
             var imgPath = getImagePath(cig);
             var color = brandColors[cig.brand] || '#5D6D7E';
             var initials = cig.brand.substring(0, 2);
-            cardsHtml +=
-                '<div class="result-card">' +
-                    '<img class="result-card-img" src="' + imgPath + '" alt="' + cig.name + '"' +
-                    ' onerror="this.onerror=null;this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';" />' +
-                    '<div class="result-card-img result-card-placeholder" style="display:none;align-items:center;justify-content:center;background-color:' + color + ';border-radius:10px;flex-shrink:0;">' +
-                        '<span style="color:white;font-size:16px;font-weight:bold;">' + initials + '</span>' +
-                    '</div>' +
-                    '<div class="result-card-info">' +
-                        '<div class="result-card-name">' + cig.name + '</div>' +
-                        '<div class="result-card-brand">' + cig.brand + ' | ' + cig.price + ' | ' + cig.thickness + '</div>' +
-                    '</div>' +
-                '</div>';
+
+            // 卡片容器
+            var card = document.createElement('div');
+            card.className = 'result-card';
+
+            // 图片
+            var img = document.createElement('img');
+            img.className = 'result-card-img';
+            img.src = imgPath;
+            img.alt = cig.name;
+            img.setAttribute('loading', 'lazy');
+
+            // 占位 div（图片加载失败时显示）
+            var placeholder = document.createElement('div');
+            placeholder.className = 'result-card-placeholder';
+            placeholder.style.display = 'none';
+            placeholder.style.alignItems = 'center';
+            placeholder.style.justifyContent = 'center';
+            placeholder.style.backgroundColor = color;
+            placeholder.style.borderRadius = '10px';
+            placeholder.style.flexShrink = '0';
+            placeholder.style.width = '64px';
+            placeholder.style.height = '86px';
+            var phSpan = document.createElement('span');
+            phSpan.style.color = 'white';
+            phSpan.style.fontSize = '16px';
+            phSpan.style.fontWeight = 'bold';
+            phSpan.textContent = initials;
+            placeholder.appendChild(phSpan);
+
+            // 图片加载失败 → 显示占位
+            img.onerror = function() {
+                img.style.display = 'none';
+                placeholder.style.display = 'flex';
+            };
+
+            // 信息区
+            var info = document.createElement('div');
+            info.className = 'result-card-info';
+
+            var nameDiv = document.createElement('div');
+            nameDiv.className = 'result-card-name';
+            nameDiv.textContent = cig.name;
+
+            var brandDiv = document.createElement('div');
+            brandDiv.className = 'result-card-brand';
+            brandDiv.textContent = cig.brand + ' | ' + cig.price + ' | ' + cig.thickness;
+
+            info.appendChild(nameDiv);
+            info.appendChild(brandDiv);
+
+            card.appendChild(img);
+            card.appendChild(placeholder);
+            card.appendChild(info);
+            container.appendChild(card);
         });
-        document.getElementById('result-cards').innerHTML = cardsHtml;
     }
 
     function renderQuestion() {

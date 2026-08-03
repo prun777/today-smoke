@@ -211,6 +211,28 @@
             flex-shrink: 0;
         }
 
+        /* ===== 返回上一题 ===== */
+        .back-row {
+            text-align: center;
+            margin-top: 24px;
+        }
+        .back-btn {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            font-size: 14px;
+            color: #999999;
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        .back-btn:active {
+            color: #5B8C5A;
+        }
+
         /* ========================================
            结果页
            ======================================== */
@@ -373,6 +395,9 @@
         <p class="question-text" id="question-text"></p>
         <p class="question-hint" id="question-hint"></p>
         <div class="options-list" id="options-list"></div>
+        <div class="back-row" id="back-row" style="display:none;">
+            <button class="back-btn" id="btn-back">← 上一题</button>
+        </div>
     </div>
 
     <!-- ===== 结果页 ===== -->
@@ -662,6 +687,8 @@
         document.getElementById('quiz-progress-bar').style.width = pct + '%';
         // 提示
         document.getElementById('question-hint').textContent = '第 ' + (currentStep + 1) + ' / ' + questions.length + ' 题';
+        // 返回按钮：第一题隐藏，后面显示
+        document.getElementById('back-row').style.display = (currentStep > 0) ? 'block' : 'none';
         questionText.textContent = q.text;
         optionsList.innerHTML = '';
         q.options.forEach(function(option, index) {
@@ -684,6 +711,15 @@
         currentStep++;
         renderQuestion();
     }
+
+    function goBack() {
+        if (currentStep <= 0) return;
+        answers.pop();
+        currentStep--;
+        renderQuestion();
+    }
+
+    document.getElementById('btn-back').addEventListener('click', goBack);
 
     document.getElementById('btn-start').addEventListener('click', function() {
         currentStep = 0;

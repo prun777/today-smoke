@@ -108,14 +108,11 @@ Page({
   },
 
   onLoad: function () {
-    var that = this
-    var env = app.globalData.cloudEnv
-
-    // 加载封面图和头像
-    var mascotId = 'cloud://' + env + '/smoke.png'
-    var prunId = 'cloud://' + env + '/prun.jpg'
-
-    this.setData({ mascotUrl: mascotId, prunUrl: prunId })
+    var base = app.globalData.imageBase
+    this.setData({
+      mascotUrl: base + 'smoke.png',
+      prunUrl: base + 'prun.jpg'
+    })
   },
 
   // ===== 开始答题 =====
@@ -174,11 +171,10 @@ Page({
     var pool = this.filterCigarettes()
     var picks = this.pickRandom(pool)
 
-    var that = this
-    var env = app.globalData.cloudEnv
+    var base = app.globalData.imageBase
     var resultCards = picks.map(function (cig) {
       var color = brandColors[cig.brand] || '#5D6D7E'
-      var imgId = 'cloud://' + env + '/' + cig.image
+      var imgId = base + cig.image
       return {
         name: cig.name,
         brand: cig.brand,

@@ -1,6 +1,6 @@
 App({
   globalData: {
-    // 图片从 GitHub Pages 加载
-    imageBase: 'https://prun777.github.io/today-smoke/'
+    // 图片打包在小程序本地，无需联网
+    imageBase: '/images/'
   }
 })

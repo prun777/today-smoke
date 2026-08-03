@@ -1,0 +1,2 @@
+<!-- 壳页面，直接加载 GitHub Pages -->
+<web-view src="https://prun777.github.io/today-smoke/index.html"></web-view>

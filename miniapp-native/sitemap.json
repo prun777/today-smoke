@@ -1,4 +1,6 @@
 {
-  "rules": [],
-  "sitemapLocation": "sitemap.json"
+  "rules": [{
+    "action": "allow",
+    "page": "*"
+  }]
 }

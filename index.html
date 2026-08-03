@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <title>今天抽什么烟</title>
+    <style>
+        /* ===== 基础重置 ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+            background-color: #FAF7F2;
+            color: #333333;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* ===== 主容器 ===== */
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 24px 20px;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* ===== 页面区域 ===== */
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+
+        /* ===== 首页 ===== */
+        #page-home {
+            text-align: center;
+            padding-top: 20vh;
+        }
+
+        /* 封面图 — 与米白背景融合 */
+        .cigarette-mascot {
+            display: block;
+            margin: 0 auto 32px;
+            max-width: 180px;
+            height: auto;
+        }
+
+        .home-title {
+            font-family: 'STLiti', 'PingFang SC', 'STSong', serif;
+            font-size: 38px;
+            font-weight: normal;
+            color: #333333;
+            margin-bottom: 48px;
+            letter-spacing: 4px;
+            line-height: 1.3;
+        }
+
+        /* 3D 立体按钮 */
+        .btn {
+            display: inline-block;
+            font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #FFFFFF;
+            background-color: #5B8C5A;
+            border: none;
+            border-radius: 14px;
+            padding: 16px 64px;
+            cursor: pointer;
+            letter-spacing: 3px;
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            /* 3D 阴影 */
+            box-shadow: 0 6px 0 #3D6B3C, 0 8px 20px rgba(61,107,60,0.25);
+            transform: translateY(0);
+            transition: all 0.08s ease;
+            position: relative;
+        }
+        .btn:active {
+            box-shadow: 0 2px 0 #3D6B3C, 0 3px 8px rgba(61,107,60,0.2);
+            transform: translateY(4px);
+            background-color: #4F7D4E;
+        }
+
+        /* ===== 问答页 ===== */
+        #page-quiz {
+            padding-top: 18vh;
+        }
+
+        .question-text {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: #333333;
+            text-align: center;
+            margin-bottom: 36px;
+            line-height: 1.5;
+        }
+
+        .options-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: #333333;
+            background-color: #FFFFFF;
+            border: none;
+            border-left: 4px solid #5B8C5A;
+            border-radius: 14px;
+            padding: 16px 20px;
+            cursor: pointer;
+            text-align: left;
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            /* 3D 微立体 */
+            box-shadow: 0 3px 0 #E0E0E0, 0 4px 12px rgba(0,0,0,0.05);
+            transform: translateY(0);
+            transition: all 0.08s ease;
+        }
+        .option-btn:active {
+            box-shadow: 0 1px 0 #E0E0E0, 0 2px 4px rgba(0,0,0,0.05);
+            transform: translateY(2px);
+            background-color: #F0F7F0;
+            border-left-color: #3D6B3C;
+        }
+
+        .option-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background-color: #EEF5EE;
+            color: #5B8C5A;
+            font-size: 13px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        /* ===== 结果页 ===== */
+        #page-result {
+            padding-top: 20px;
+        }
+
+        .result-title {
+            font-family: 'STLiti', 'PingFang SC', 'STSong', serif;
+            font-size: 26px;
+            color: #333333;
+            text-align: center;
+            margin-bottom: 28px;
+            letter-spacing: 2px;
+        }
+
+        .result-cards {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .result-card {
+            background-color: #FFFFFF;
+            border-radius: 18px;
+            padding: 16px;
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            box-shadow: 0 3px 0 #E8E8E8, 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .result-card-img {
+            width: 64px;
+            height: 86px;
+            object-fit: contain;
+            border-radius: 10px;
+            background-color: #F5F5F5;
+            flex-shrink: 0;
+        }
+
+        .result-card-placeholder {
+            width: 64px;
+            height: 86px;
+            border-radius: 10px;
+        }
+
+        .result-card-info {
+            flex: 1;
+        }
+
+        .result-card-name {
+            font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+            font-size: 17px;
+            font-weight: 600;
+            color: #333333;
+            margin-bottom: 4px;
+        }
+
+        .result-card-brand {
+            font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+            font-size: 12px;
+            color: #999999;
+        }
+
+        /* ===== 公众号推广 ===== */
+        .wechat-promo {
+            position: fixed;
+            right: 16px;
+            bottom: 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            z-index: 10;
+        }
+
+        .wechat-promo-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #FFFFFF;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .wechat-promo-name {
+            font-size: 11px;
+            color: #333333;
+            font-weight: 500;
+        }
+
+        .wechat-promo-text {
+            font-size: 9px;
+            color: #999999;
+        }
+
+        /* ===== 赞赏入口（结果页右下角） ===== */
+        .tip-link {
+            position: fixed;
+            right: 16px;
+            bottom: 28px;
+            z-index: 10;
+            display: none;
+            font-size: 13px;
+            color: #5B8C5A;
+            text-decoration: none;
+            font-weight: 500;
+            background: #FFFFFF;
+            padding: 10px 14px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: all 0.15s ease;
+        }
+        .tip-link:active {
+            transform: scale(0.95);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ===== 首页 ===== -->
+    <div id="page-home" class="page active">
+        <img class="cigarette-mascot" src="封面图片.jpg" alt="今天抽什么烟">
+
+        <h1 class="home-title">今天抽什么烟</h1>
+        <button class="btn" id="btn-start">开始</button>
+    </div>
+
+    <!-- ===== 问答页 ===== -->
+    <div id="page-quiz" class="page">
+        <p class="question-text" id="question-text"></p>
+        <div class="options-list" id="options-list"></div>
+    </div>
+
+    <!-- ===== 结果页 ===== -->
+    <div id="page-result" class="page">
+        <h2 class="result-title">今日推荐</h2>
+        <div class="result-cards" id="result-cards"></div>
+        <button class="btn" id="btn-retry">再测一次</button>
+    </div>
+
+</div>
+
+<!-- ===== 公众号推广 ===== -->
+<div class="wechat-promo" id="wechat-promo">
+    <img class="wechat-promo-avatar" src="prun.jpg" alt="公众号头像">
+    <span class="wechat-promo-name">prun</span>
+    <span class="wechat-promo-text">关注微信公众号</span>
+</div>
+
+<!-- ===== 赞赏入口 ===== -->
+<a class="tip-link" id="tip-link" href="tip.html">鼓励一下作者？</a>
+
+<script>
+    // ===== 页面元素 =====
+    const pageHome = document.getElementById('page-home');
+    const pageQuiz = document.getElementById('page-quiz');
+    const pageResult = document.getElementById('page-result');
+    const wechatPromo = document.getElementById('wechat-promo');
+    const questionText = document.getElementById('question-text');
+    const optionsList = document.getElementById('options-list');
+
+    // ===== 烟的数据 =====
+    var cigarettes = [
+        // ── 中华 ──
+        { name: '中华（软）', brand: '中华', price: '50元以上', origin: '国产', thickness: '常规', mood: ['和朋友在一起'], taste: ['抽点够劲的'], image: '', desc: '国烟经典' },
+        { name: '中华（硬）', brand: '中华', price: '50元以上', origin: '国产', thickness: '常规', mood: ['和朋友在一起'], taste: ['抽点够劲的'], image: '', desc: '硬盒中华，醇厚饱满' },
+        { name: '中华（双中支）', brand: '中华', price: '50元以上', origin: '国产', thickness: '中支', mood: ['想放松一下', '和朋友在一起'], taste: ['抽点柔和的'], image: '', desc: '中支新贵，口感细腻' },
+        { name: '中华（细支）', brand: '中华', price: '50元以上', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '细支中华，优雅清淡' },
+        // ── 玉溪 ──
+        { name: '玉溪（软）', brand: '玉溪', price: '20-50元', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的'], image: '', desc: '云系清香' },
+        { name: '玉溪（硬）', brand: '玉溪', price: '20-50元', origin: '国产', thickness: '常规', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '经典硬盒' },
+        { name: '玉溪（细支）', brand: '玉溪', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: '', desc: '细支清香' },
+        // ── 黄鹤楼 ──
+        { name: '黄鹤楼（软蓝）', brand: '黄鹤楼', price: '20-50元', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的'], image: '', desc: '淡雅香型' },
+        { name: '黄鹤楼（硬红）', brand: '黄鹤楼', price: '20-50元', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '劲道适中' },
+        { name: '黄鹤楼（细支）', brand: '黄鹤楼', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '细支雅香' },
+        { name: '黄鹤楼1916', brand: '黄鹤楼', price: '50元以上', origin: '国产', thickness: '常规', mood: ['和朋友在一起'], taste: ['抽点够劲的'], image: '', desc: '高端典范' },
+        // ── 利群 ──
+        { name: '利群（新版）', brand: '利群', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '国民口粮' },
+        { name: '利群（软红）', brand: '利群', price: '20-50元', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的'], image: '', desc: '长嘴利群' },
+        { name: '利群（细支）', brand: '利群', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '细支利群' },
+        { name: '利群（阳光）', brand: '利群', price: '50元以上', origin: '国产', thickness: '常规', mood: ['想放松一下', '和朋友在一起'], taste: ['抽点柔和的'], image: '', desc: '阳光利群' },
+        // ── 芙蓉王 ──
+        { name: '芙蓉王（硬）', brand: '芙蓉王', price: '20-50元', origin: '国产', thickness: '常规', mood: ['一个人呆着', '和朋友在一起'], taste: ['抽点够劲的'], image: '', desc: '湖南名烟' },
+        { name: '芙蓉王（软蓝）', brand: '芙蓉王', price: '50元以上', origin: '国产', thickness: '常规', mood: ['想放松一下', '和朋友在一起'], taste: ['抽点柔和的'], image: '', desc: '软蓝芙蓉王' },
+        { name: '芙蓉王（细支）', brand: '芙蓉王', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '细支芙蓉王' },
+        // ── 云烟 ──
+        { name: '云烟（软珍品）', brand: '云烟', price: '20-50元', origin: '国产', thickness: '常规', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '云南珍品' },
+        { name: '云烟（紫）', brand: '云烟', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '紫云烟' },
+        { name: '云烟（细支）', brand: '云烟', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点甜的'], image: '', desc: '细支云烟' },
+        // ── 南京 ──
+        { name: '南京（炫赫门）', brand: '南京', price: '20元以下', origin: '国产', thickness: '细支', mood: ['想放松一下', '一个人呆着'], taste: ['抽点甜的'], image: '', desc: '甜嘴细支' },
+        { name: '南京（金陵十二钗）', brand: '南京', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点甜的'], image: '', desc: '金陵十二钗' },
+        { name: '南京（九五）', brand: '南京', price: '50元以上', origin: '国产', thickness: '常规', mood: ['和朋友在一起'], taste: ['抽点够劲的'], image: '', desc: '九五之尊' },
+        // ── 苏烟 ──
+        { name: '苏烟（软金砂）', brand: '苏烟', price: '50元以上', origin: '国产', thickness: '常规', mood: ['想放松一下', '和朋友在一起'], taste: ['抽点柔和的'], image: '', desc: '江苏名烟' },
+        { name: '苏烟（五星红杉树）', brand: '苏烟', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点柔和的'], image: '', desc: '红杉树' },
+        // ── 红塔山 ──
+        { name: '红塔山（经典1956）', brand: '红塔山', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '国民经典' },
+        { name: '红塔山（细支）', brand: '红塔山', price: '20元以下', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '细支红塔山' },
+        // ── 泰山 ──
+        { name: '泰山（望岳）', brand: '泰山', price: '20元以下', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的'], image: '', desc: '望岳泰山' },
+        { name: '泰山（细支）', brand: '泰山', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点甜的'], image: '', desc: '细支泰山' },
+        // ── 贵烟 ──
+        { name: '贵烟（跨越）', brand: '贵烟', price: '20元以下', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点甜的'], image: '', desc: '陈皮爆珠' },
+        { name: '贵烟（硬黄）', brand: '贵烟', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '贵州经典' },
+        // ── 娇子 ──
+        { name: '娇子（X星座）', brand: '娇子', price: '20元以下', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点甜的'], image: '', desc: '年轻时尚' },
+        { name: '娇子（宽窄）', brand: '娇子', price: '50元以上', origin: '国产', thickness: '常规', mood: ['想放松一下', '和朋友在一起'], taste: ['抽点柔和的'], image: '', desc: '宽窄哲学' },
+        // ── 黄山 ──
+        { name: '黄山（红方印）', brand: '黄山', price: '20-50元', origin: '国产', thickness: '常规', mood: ['一个人呆着', '和朋友在一起'], taste: ['抽点够劲的'], image: '', desc: '徽烟焦甜香' },
+        { name: '黄山（记忆）', brand: '黄山', price: '20元以下', origin: '国产', thickness: '常规', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '黄山记忆' },
+        // ── 七匹狼 ──
+        { name: '七匹狼（白）', brand: '七匹狼', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: '', desc: '白狼低焦' },
+        { name: '七匹狼（细支）', brand: '七匹狼', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '细支狼烟' },
+        // ── 双喜 ──
+        { name: '双喜（经典）', brand: '双喜', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着', '和朋友在一起'], taste: ['抽点够劲的'], image: '', desc: '广式经典' },
+        { name: '双喜（细支）', brand: '双喜', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '细支双喜' },
+        // ── 黄金叶 ──
+        { name: '黄金叶（大金圆）', brand: '黄金叶', price: '20-50元', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '中原浓香' },
+        { name: '黄金叶（细支）', brand: '黄金叶', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '细支金叶' },
+        // ── 长白山 ──
+        { name: '长白山（软红）', brand: '长白山', price: '20元以下', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: '', desc: '东北名烟' },
+        { name: '长白山（细支）', brand: '长白山', price: '20元以下', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: '', desc: '极低焦油' },
+        // ── 中南海 ──
+        { name: '中南海（8mg）', brand: '中南海', price: '20元以下', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: '', desc: '北京老牌' },
+        { name: '中南海（5mg）', brand: '中南海', price: '20元以下', origin: '国产', thickness: '常规', mood: ['想放松一下'], taste: ['抽点口水烟（少尼古丁）'], image: '', desc: '超低焦油' },
+        // ── 黄果树 ──
+        { name: '黄果树（硬）', brand: '黄果树', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '贵州经典' },
+        // ── 红河 ──
+        { name: '红河（硬甲）', brand: '红河', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '云系口粮' },
+        // ── 兰州 ──
+        { name: '兰州（硬珍品）', brand: '兰州', price: '20元以下', origin: '国产', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的'], image: '', desc: '西北绵香' },
+        { name: '兰州（细支）', brand: '兰州', price: '20-50元', origin: '国产', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点甜的'], image: '', desc: '绵甜回甘' },
+        // ── 白沙 ──
+        { name: '白沙（精品）', brand: '白沙', price: '20元以下', origin: '国产', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '湖南经典' },
+        { name: '白沙（和天下）', brand: '白沙', price: '50元以上', origin: '国产', thickness: '常规', mood: ['和朋友在一起'], taste: ['抽点够劲的'], image: '', desc: '和天下' },
+        // ── 万宝路（进口）──
+        { name: '万宝路（红）', brand: '万宝路', price: '20-50元', origin: '进口', thickness: '常规', mood: ['一个人呆着'], taste: ['抽点够劲的'], image: '', desc: '美式经典' },
+        { name: '万宝路（白）', brand: '万宝路', price: '20-50元', origin: '进口', thickness: '常规', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: '', desc: '白金万' },
+        { name: '万宝路（爆珠）', brand: '万宝路', price: '20-50元', origin: '进口', thickness: '常规', mood: ['想放松一下'], taste: ['抽点甜的'], image: '', desc: '薄荷爆珠' },
+        // ── 555（进口）──
+        { name: '555（金）', brand: '555', price: '20-50元', origin: '进口', thickness: '常规', mood: ['一个人呆着', '和朋友在一起'], taste: ['抽点够劲的'], image: '', desc: '英式烤烟' },
+        { name: '555（蓝）', brand: '555', price: '20-50元', origin: '进口', thickness: '常规', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: '', desc: '淡雅英伦' },
+        // ── 七星（进口）──
+        { name: '七星（原味）', brand: '七星', price: '20-50元', origin: '进口', thickness: '常规', mood: ['想放松一下'], taste: ['抽点柔和的'], image: '', desc: '日系经典' },
+        { name: '七星（爆珠）', brand: '七星', price: '20-50元', origin: '进口', thickness: '常规', mood: ['想放松一下'], taste: ['抽点甜的'], image: '', desc: '日系爆珠' },
+        // ── 大卫杜夫（进口）──
+        { name: '大卫杜夫（金）', brand: '大卫杜夫', price: '50元以上', origin: '进口', thickness: '常规', mood: ['想放松一下', '和朋友在一起'], taste: ['抽点柔和的'], image: '', desc: '德系高端' },
+        // ── 爱喜（进口）──
+        { name: '爱喜（经典）', brand: '爱喜', price: '20元以下', origin: '进口', thickness: '细支', mood: ['想放松一下'], taste: ['抽点柔和的', '抽点口水烟（少尼古丁）'], image: '', desc: '韩系细支' },
+        { name: '爱喜（爆珠）', brand: '爱喜', price: '20元以下', origin: '进口', thickness: '细支', mood: ['想放松一下'], taste: ['抽点甜的'], image: '', desc: '韩系爆珠' },
+        // ── 宝亨（进口）──
+        { name: '宝亨（原味）', brand: '宝亨', price: '20-50元', origin: '进口', thickness: '常规', mood: ['想放松一下', '一个人呆着'], taste: ['抽点柔和的'], image: '', desc: '韩系混合' }
+    ];
+
+    // ===== 问题列表 =====
+    var questions = [
+        { text: '今天的预算？', field: 'price', options: ['20元以下', '20-50元', '50元以上', '无所谓'] },
+        { text: '国产还是进口？', field: 'origin', options: ['国产', '进口', '都行'] },
+        { text: '喜欢什么粗细？', field: 'thickness', options: ['常规烟', '细支', '中支', '无所谓'] },
+        { text: '今天心情如何？', field: 'mood', options: ['想放松一下', '一个人呆着', '和朋友在一起', '无所谓'] },
+        { text: '偏好什么口感？', field: 'taste', options: ['抽点够劲的', '抽点柔和的', '抽点甜的', '抽点口水烟（少尼古丁）', '无所谓'] }
+    ];
+
+    var currentStep = 0;
+    var answers = [];
+
+    var tipLink = document.getElementById('tip-link');
+
+    function showPage(page) {
+        [pageHome, pageQuiz, pageResult].forEach(function(p) { p.classList.remove('active'); });
+        page.classList.add('active');
+        wechatPromo.style.display = (page === pageHome) ? 'flex' : 'none';
+        tipLink.style.display = (page === pageResult) ? 'block' : 'none';
+    }
+
+    function filterCigarettes() {
+        var pool = cigarettes.slice();
+        var originAnswer = answers[1];
+        if (originAnswer === '国产') pool = pool.filter(function(c) { return c.origin === '国产'; });
+        else if (originAnswer === '进口') pool = pool.filter(function(c) { return c.origin === '进口'; });
+
+        var filterOrder = [
+            { index: 0, field: 'price' },
+            { index: 2, field: 'thickness' },
+            { index: 3, field: 'mood' },
+            { index: 4, field: 'taste' }
+        ];
+
+        for (var i = 0; i < filterOrder.length; i++) {
+            var answer = answers[filterOrder[i].index];
+            if (!answer || answer === '无所谓') continue;
+            var field = filterOrder[i].field;
+            var filtered;
+            if (field === 'price' || field === 'thickness') {
+                filtered = pool.filter(function(c) { return c[field] === answer; });
+            } else {
+                filtered = pool.filter(function(c) { return c[field].indexOf(answer) !== -1; });
+            }
+            if (filtered.length >= 3) pool = filtered;
+        }
+        return pool;
+    }
+
+    function pickRandom(pool) {
+        var arr = pool.slice(), result = [];
+        var count = Math.min(3, arr.length);
+        for (var i = 0; i < count; i++) {
+            var idx = Math.floor(Math.random() * arr.length);
+            result.push(arr[idx]);
+            arr.splice(idx, 1);
+        }
+        return result;
+    }
+
+    function getImagePath(cig) {
+        if (cig.image) return cig.image;
+        return 'images/' + encodeURIComponent(cig.name) + '.jpg';
+    }
+
+    var brandColors = {
+        '中华':'#C41E2A','玉溪':'#8B1A1A','黄鹤楼':'#1B3A5C','利群':'#C41E2A','芙蓉王':'#D4A843',
+        '云烟':'#C41E2A','南京':'#C8963E','苏烟':'#8B1A1A','红塔山':'#C41E2A','泰山':'#2D5A27',
+        '贵烟':'#5C3D2E','娇子':'#2565AE','黄山':'#C8963E','七匹狼':'#1E3A5F','双喜':'#D4213D',
+        '黄金叶':'#C8963E','长白山':'#2D5A27','中南海':'#5D6D7E','黄果树':'#C8963E','红河':'#C41E2A',
+        '兰州':'#1A3A6B','白沙':'#5D6D7E','万宝路':'#D52B1E','555':'#1B3A5C','七星':'#2C3E50',
+        '大卫杜夫':'#1C1C1C','爱喜':'#27AE60','宝亨':'#8B6914'
+    };
+
+    function showResults() {
+        var pool = filterCigarettes();
+        var picks = pickRandom(pool);
+        var cardsHtml = '';
+        picks.forEach(function(cig) {
+            var imgPath = getImagePath(cig);
+            var color = brandColors[cig.brand] || '#5D6D7E';
+            var initials = cig.brand.substring(0, 2);
+            cardsHtml +=
+                '<div class="result-card">' +
+                    '<img class="result-card-img" src="' + imgPath + '" alt="' + cig.name + '"' +
+                    ' onerror="this.onerror=null;this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';" />' +
+                    '<div class="result-card-img result-card-placeholder" style="display:none;align-items:center;justify-content:center;background-color:' + color + ';border-radius:10px;flex-shrink:0;">' +
+                        '<span style="color:white;font-size:16px;font-weight:bold;">' + initials + '</span>' +
+                    '</div>' +
+                    '<div class="result-card-info">' +
+                        '<div class="result-card-name">' + cig.name + '</div>' +
+                        '<div class="result-card-brand">' + cig.brand + ' | ' + cig.price + ' | ' + cig.thickness + '</div>' +
+                    '</div>' +
+                '</div>';
+        });
+        document.getElementById('result-cards').innerHTML = cardsHtml;
+    }
+
+    function renderQuestion() {
+        if (currentStep >= questions.length) {
+            showPage(pageResult);
+            showResults();
+            return;
+        }
+        var q = questions[currentStep];
+        questionText.textContent = q.text;
+        optionsList.innerHTML = '';
+        q.options.forEach(function(option, index) {
+            var btn = document.createElement('button');
+            btn.className = 'option-btn';
+            var num = document.createElement('span');
+            num.className = 'option-number';
+            num.textContent = (index + 1);
+            btn.appendChild(num);
+            var label = document.createElement('span');
+            label.textContent = option;
+            btn.appendChild(label);
+            btn.addEventListener('click', function() { selectOption(option); });
+            optionsList.appendChild(btn);
+        });
+    }
+
+    function selectOption(option) {
+        answers.push(option);
+        currentStep++;
+        renderQuestion();
+    }
+
+    document.getElementById('btn-start').addEventListener('click', function() {
+        currentStep = 0;
+        answers = [];
+        showPage(pageQuiz);
+        renderQuestion();
+    });
+
+    document.getElementById('btn-retry').addEventListener('click', function() {
+        showPage(pageHome);
+    });
+</script>
+
+</body>
+</html>

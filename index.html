@@ -57,20 +57,13 @@
             min-height: 100vh;
         }
 
-        /* 封面图容器 — 米白圆角底托，浮在绿背景上 */
-        .mascot-wrap {
-            display: inline-block;
-            background: #FFFDF7;
-            border-radius: 24px;
-            padding: 16px 12px 8px;
-            margin: 0 auto 32px;
-            box-shadow: 0 6px 30px rgba(0,0,0,0.12);
-        }
-
+        /* 封面图 — 透明 PNG，自然融入绿背景 */
         .cigarette-mascot {
             display: block;
-            max-width: 150px;
+            margin: 0 auto 32px;
+            max-width: 170px;
             height: auto;
+            filter: drop-shadow(0 4px 16px rgba(0,0,0,0.15));
         }
 
         .home-title {
@@ -367,7 +360,7 @@
 
     <!-- ===== 首页 ===== -->
     <div id="page-home" class="page active">
-        <div class="mascot-wrap"><img class="cigarette-mascot" src="封面图片.jpg" alt="今天抽什么烟"></div>
+        <img class="cigarette-mascot" src="封面图片.png" alt="今天抽什么烟">
 
         <h1 class="home-title">今天抽什么烟</h1>
         <p class="home-subtitle">今天适合来一根什么？</p>

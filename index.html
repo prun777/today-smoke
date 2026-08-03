@@ -17,6 +17,7 @@
         html, body {
             margin: 0;
             padding: 0;
+            min-height: 100vh;
         }
 
         body {
@@ -24,6 +25,11 @@
             background-color: #FAF7F2;
             color: #333333;
             -webkit-tap-highlight-color: transparent;
+            transition: background-color 0.35s ease;
+        }
+        /* 首页时 body 变绿 */
+        body.on-home {
+            background-color: #5B8C5A;
         }
 
         /* ===== 主容器 ===== */
@@ -44,31 +50,53 @@
             display: block;
         }
 
-        /* ===== 首页 ===== */
+        /* ========================================
+           首页 — 绿色背景
+           ======================================== */
         #page-home {
             text-align: center;
-            padding-top: 20vh;
+            padding-top: 18vh;
         }
 
-        /* 封面图 — 与米白背景融合 */
         .cigarette-mascot {
             display: block;
-            margin: 0 auto 32px;
-            max-width: 180px;
+            margin: 0 auto 28px;
+            max-width: 160px;
             height: auto;
+            /* 绿色背景上微微发光 */
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
         }
 
         .home-title {
             font-family: 'STLiti', 'PingFang SC', 'STSong', serif;
             font-size: 38px;
             font-weight: normal;
-            color: #333333;
-            margin-bottom: 48px;
+            color: #FFFFFF;
+            margin-bottom: 8px;
             letter-spacing: 4px;
             line-height: 1.3;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
-        /* 3D 立体按钮 */
+        .home-subtitle {
+            color: rgba(255,255,255,0.5);
+            font-size: 12px;
+            margin-bottom: 48px;
+            letter-spacing: 2px;
+        }
+
+        /* 首页按钮 — 米白色立体 */
+        #page-home .btn {
+            color: #5B8C5A;
+            background-color: #FFFDF7;
+            box-shadow: 0 6px 0 #E0D8C8, 0 8px 24px rgba(0,0,0,0.12);
+        }
+        #page-home .btn:active {
+            box-shadow: 0 2px 0 #E0D8C8, 0 3px 8px rgba(0,0,0,0.1);
+            background-color: #F5F0E5;
+        }
+
+        /* ===== 通用按钮 ===== */
         .btn {
             display: inline-block;
             font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
@@ -84,7 +112,6 @@
             -webkit-appearance: none;
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
-            /* 3D 阴影 */
             box-shadow: 0 6px 0 #3D6B3C, 0 8px 20px rgba(61,107,60,0.25);
             transform: translateY(0);
             transition: all 0.08s ease;
@@ -96,9 +123,26 @@
             background-color: #4F7D4E;
         }
 
-        /* ===== 问答页 ===== */
+        /* ========================================
+           问答页
+           ======================================== */
         #page-quiz {
-            padding-top: 18vh;
+            padding-top: 16vh;
+        }
+
+        /* 进度条 */
+        .quiz-progress {
+            width: 100%;
+            height: 3px;
+            background: #E8E8E8;
+            border-radius: 2px;
+            margin-bottom: 32px;
+        }
+        .quiz-progress-bar {
+            height: 100%;
+            background: #5B8C5A;
+            border-radius: 2px;
+            transition: width 0.3s ease;
         }
 
         .question-text {
@@ -107,15 +151,22 @@
             font-weight: 600;
             color: #333333;
             text-align: center;
-            margin-bottom: 36px;
+            margin-bottom: 8px;
             line-height: 1.5;
+        }
+
+        .question-hint {
+            text-align: center;
+            color: #AAAAAA;
+            font-size: 12px;
+            margin-bottom: 28px;
         }
 
         .options-list {
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
         .option-btn {
@@ -124,8 +175,7 @@
             font-weight: 500;
             color: #333333;
             background-color: #FFFFFF;
-            border: none;
-            border-left: 4px solid #5B8C5A;
+            border: 1.5px solid #EEEEEE;
             border-radius: 14px;
             padding: 16px 20px;
             cursor: pointer;
@@ -137,16 +187,15 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            /* 3D 微立体 */
-            box-shadow: 0 3px 0 #E0E0E0, 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 3px 0 #F0F0F0, 0 4px 12px rgba(0,0,0,0.04);
             transform: translateY(0);
             transition: all 0.08s ease;
         }
         .option-btn:active {
-            box-shadow: 0 1px 0 #E0E0E0, 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 0 #E0E0E0, 0 2px 4px rgba(0,0,0,0.04);
             transform: translateY(2px);
-            background-color: #F0F7F0;
-            border-left-color: #3D6B3C;
+            background-color: #F4FAF4;
+            border-color: #5B8C5A;
         }
 
         .option-number {
@@ -163,69 +212,87 @@
             flex-shrink: 0;
         }
 
-        /* ===== 结果页 ===== */
+        /* ========================================
+           结果页
+           ======================================== */
         #page-result {
             padding-top: 20px;
         }
 
         .result-title {
             font-family: 'STLiti', 'PingFang SC', 'STSong', serif;
-            font-size: 26px;
+            font-size: 24px;
             color: #333333;
             text-align: center;
-            margin-bottom: 28px;
+            margin-bottom: 6px;
             letter-spacing: 2px;
+        }
+
+        .result-subtitle {
+            text-align: center;
+            color: #AAAAAA;
+            font-size: 12px;
+            margin-bottom: 24px;
         }
 
         .result-cards {
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
             margin-bottom: 28px;
         }
 
         .result-card {
             background-color: #FFFFFF;
-            border-radius: 18px;
-            padding: 16px;
+            border-radius: 16px;
+            padding: 14px 16px;
             display: flex;
             gap: 14px;
             align-items: center;
-            box-shadow: 0 3px 0 #E8E8E8, 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 0 #F0F0F0, 0 4px 16px rgba(0,0,0,0.04);
+            transition: transform 0.15s ease;
         }
 
         .result-card-img {
-            width: 64px;
-            height: 86px;
+            width: 60px;
+            height: 80px;
             object-fit: contain;
-            border-radius: 10px;
-            background-color: #F5F5F5;
+            border-radius: 8px;
+            background-color: #FAFAFA;
             flex-shrink: 0;
         }
 
         .result-card-placeholder {
-            width: 64px;
-            height: 86px;
-            border-radius: 10px;
+            width: 60px;
+            height: 80px;
+            border-radius: 8px;
         }
 
         .result-card-info {
             flex: 1;
+            min-width: 0;
         }
 
         .result-card-name {
             font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 600;
             color: #333333;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
-        .result-card-brand {
+        .result-card-desc {
             font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
-            font-size: 12px;
+            font-size: 11px;
             color: #999999;
+            margin-bottom: 2px;
+        }
+
+        .result-card-meta {
+            font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+            font-size: 11px;
+            color: #BBBBBB;
         }
 
         /* ===== 公众号推广 ===== */
@@ -258,6 +325,11 @@
         .wechat-promo-text {
             font-size: 9px;
             color: #999999;
+        }
+        /* 首页绿色背景下推广文字变亮 */
+        body.on-home .wechat-promo-name,
+        body.on-home .wechat-promo-text {
+            color: rgba(255,255,255,0.7);
         }
 
         /* ===== 赞赏入口（结果页右下角） ===== */
@@ -292,19 +364,22 @@
         <img class="cigarette-mascot" src="封面图片.jpg" alt="今天抽什么烟">
 
         <h1 class="home-title">今天抽什么烟</h1>
-        <p style="text-align:center;color:#ccc;font-size:11px;margin-top:-36px;">v3.0</p>
+        <p class="home-subtitle">今天适合来一根什么？</p>
         <button class="btn" id="btn-start">开始</button>
     </div>
 
     <!-- ===== 问答页 ===== -->
     <div id="page-quiz" class="page">
+        <div class="quiz-progress"><div class="quiz-progress-bar" id="quiz-progress-bar" style="width:0%"></div></div>
         <p class="question-text" id="question-text"></p>
+        <p class="question-hint" id="question-hint"></p>
         <div class="options-list" id="options-list"></div>
     </div>
 
     <!-- ===== 结果页 ===== -->
     <div id="page-result" class="page">
         <h2 class="result-title">今日推荐</h2>
+        <p class="result-subtitle">根据你的选择，今天试试这几款</p>
         <div class="result-cards" id="result-cards"></div>
         <button class="btn" id="btn-retry">再测一次</button>
     </div>
@@ -447,6 +522,12 @@
         page.classList.add('active');
         wechatPromo.style.display = (page === pageHome) ? 'flex' : 'none';
         tipLink.style.display = (page === pageResult) ? 'block' : 'none';
+        // 首页绿背景
+        if (page === pageHome) {
+            document.body.classList.add('on-home');
+        } else {
+            document.body.classList.remove('on-home');
+        }
     }
 
     function filterCigarettes() {
@@ -530,10 +611,10 @@
             placeholder.style.alignItems = 'center';
             placeholder.style.justifyContent = 'center';
             placeholder.style.backgroundColor = color;
-            placeholder.style.borderRadius = '10px';
+            placeholder.style.borderRadius = '8px';
             placeholder.style.flexShrink = '0';
-            placeholder.style.width = '64px';
-            placeholder.style.height = '86px';
+            placeholder.style.width = '60px';
+            placeholder.style.height = '80px';
             var phSpan = document.createElement('span');
             phSpan.style.color = 'white';
             phSpan.style.fontSize = '16px';
@@ -555,12 +636,17 @@
             nameDiv.className = 'result-card-name';
             nameDiv.textContent = cig.name;
 
-            var brandDiv = document.createElement('div');
-            brandDiv.className = 'result-card-brand';
-            brandDiv.textContent = cig.brand + ' | ' + cig.price + ' | ' + cig.thickness;
+            var descDiv = document.createElement('div');
+            descDiv.className = 'result-card-desc';
+            descDiv.textContent = cig.desc || '';
+
+            var metaDiv = document.createElement('div');
+            metaDiv.className = 'result-card-meta';
+            metaDiv.textContent = cig.brand + ' · ' + cig.price + ' · ' + cig.thickness;
 
             info.appendChild(nameDiv);
-            info.appendChild(brandDiv);
+            info.appendChild(descDiv);
+            info.appendChild(metaDiv);
 
             card.appendChild(img);
             card.appendChild(placeholder);
@@ -576,6 +662,11 @@
             return;
         }
         var q = questions[currentStep];
+        // 进度条
+        var pct = Math.round((currentStep / questions.length) * 100);
+        document.getElementById('quiz-progress-bar').style.width = pct + '%';
+        // 提示
+        document.getElementById('question-hint').textContent = '第 ' + (currentStep + 1) + ' / ' + questions.length + ' 题';
         questionText.textContent = q.text;
         optionsList.innerHTML = '';
         q.options.forEach(function(option, index) {
